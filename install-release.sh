@@ -5,13 +5,13 @@
 # https://wiki.linuxfoundation.org/lsb/fhs
 
 # The URL of the script project is:
-# https://github.com/v2fly/fhs-install-v2ray
+# https://github.com/universonic/fhs-install-v2ray
 
 # The URL of the script is:
-# https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh
+# https://raw.githubusercontent.com/universonic/fhs-install-v2ray/master/install-release.sh
 
 # If the script executes incorrectly, go to:
-# https://github.com/v2fly/fhs-install-v2ray/issues
+# https://github.com/universonic/fhs-install-v2ray/issues
 
 # You can set this variable whatever you want in shell session right before running this script by issuing:
 # export DAT_PATH='/usr/local/share/v2ray'
@@ -117,7 +117,7 @@ identify_the_operating_system_and_architecture() {
     fi
     # Do not combine this judgment condition with the following judgment condition.
     ## Be aware of Linux distribution like Gentoo, which kernel supports switch between Systemd and OpenRC.
-    ### Refer: https://github.com/v2fly/fhs-install-v2ray/issues/84#issuecomment-688574989
+    ### Refer: https://github.com/universonic/fhs-install-v2ray/issues/84#issuecomment-688574989
     if [[ -f /.dockerenv ]] || grep -q 'docker\|lxc' /proc/1/cgroup && [[ "$(type -P systemctl)" ]]; then
       true
     elif [[ -d /run/systemd/system ]] || grep -q systemd <(ls -l /sbin/init); then
@@ -243,7 +243,7 @@ get_version() {
   fi
   # Get V2Ray release version number
   TMP_FILE="$(mktemp)"
-  if ! curl -x "${PROXY}" -sS -H "Accept: application/vnd.github.v3+json" -o "$TMP_FILE" 'https://api.github.com/repos/v2fly/v2ray-core/releases/latest'; then
+  if ! curl -x "${PROXY}" -sS -H "Accept: application/vnd.github.v3+json" -o "$TMP_FILE" 'https://api.github.com/repos/universonic/v2ray-core/releases/latest'; then
     "rm" "$TMP_FILE"
     echo 'error: Failed to get release list, please check your network.'
     exit 1
